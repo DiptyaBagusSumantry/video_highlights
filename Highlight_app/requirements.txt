@@ -1,0 +1,6 @@
+Flask
+moviepy
+soundfile
+scipy
+numpy
+flask-cors
