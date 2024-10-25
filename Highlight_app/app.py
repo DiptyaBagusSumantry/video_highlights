@@ -8,7 +8,7 @@ import os
 import uuid
 
 app = Flask(__name__)
-CORS(app, resources={r"/get-video/*": {"origins": ["http://localhost:5173"], "methods": ["GET", "POST", "OPTIONS"]}})
+CORS(app, resources={r"/get-video/*": {"origins": ["http://localhost:5173", "http://34.72.25.183:5170"], "methods": ["GET", "POST", "OPTIONS"]}})
 
 
 def extract_audio_from_video(video_file):
