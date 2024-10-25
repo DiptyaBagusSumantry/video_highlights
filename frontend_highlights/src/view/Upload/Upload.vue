@@ -100,7 +100,7 @@ export default {
         const timestamp = Date.now();
           setTimeout(() => {
         this.$router.push(`/result/${timestamp}`);
-        }, 185000);
+        }, 200000);
 
         const result = await uploadVideo(this.selectedVideo, timestamp);
         
