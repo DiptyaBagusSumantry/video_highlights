@@ -89,7 +89,8 @@ def process_video():
 
     return jsonify({"message": "Processing completed."}), 200
 
-DOMAIN_NAME = 'http://127.0.0.1:5000'
+# DOMAIN_NAME = 'http://127.0.0.1:5000'
+DOMAIN_NAME = 'http://34.72.25.183:5000'
 OUTPUT_DIRECTORY = 'output' 
 
 @app.route('/get-video/<folder_name>', methods=['GET'])
