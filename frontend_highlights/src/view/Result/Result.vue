@@ -41,7 +41,7 @@ export default {
         const paramFromUrl = this.$route.params.name;
 
         const response = await resultVideo(paramFromUrl);
-        console.log(response)
+        // console.log(response)
         this.allVideos = response;
 
         let index = 0;
