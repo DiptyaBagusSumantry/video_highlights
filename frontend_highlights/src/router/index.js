@@ -11,6 +11,11 @@ const routes = [
         name: 'result',
         component: () => import('../view/Result/Result.vue')
     },
+    {
+        path: '/result',
+        name: 'List Match',
+        component: () => import('../view/ListMatch/ListMatch.vue')
+    },
 ]
 
 const router = createRouter({
