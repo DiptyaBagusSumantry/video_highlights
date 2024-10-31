@@ -8,7 +8,7 @@ import os
 import uuid
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": ["http://localhost:5173", "http://34.72.25.183:5170", "http://localhost:5170", "http://127.0.0.1:5170"], "methods": ["GET", "POST", "OPTIONS"]}})
+CORS(app, resources={r"/*": {"origins": ["http://localhost:5173", "http://34.72.25.183:5170", "http://34.135.114.112:5170", "http://localhost:5170", "http://127.0.0.1:5170"], "methods": ["GET", "POST", "OPTIONS"]}})
 
 def extract_audio_from_video(video_file):
     try:
@@ -89,7 +89,7 @@ def process_video():
     return jsonify({"message": "Processing completed."}), 200
 
 # DOMAIN_NAME = 'http://127.0.0.1:5000'
-DOMAIN_NAME = 'http://34.72.25.183:5000'
+DOMAIN_NAME = 'http://34.135.114.112:5000'
 OUTPUT_DIRECTORY = 'output' 
 
 @app.route('/get-video/<folder_name>', methods=['GET'])
