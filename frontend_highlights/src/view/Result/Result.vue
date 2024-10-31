@@ -43,11 +43,11 @@
                   </svg>
                 </span>
               </button>
-              <div id="tooltip-website-url" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+              <!-- <div id="tooltip-website-url" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                 <span id="default-tooltip-message">Copy link</span>
                 <span id="success-tooltip-message" class="hidden">Copied!</span>
                 <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -97,21 +97,56 @@ export default {
       // window.open(video, '_blank');
     },
     copyToClipboard(url) {
-      navigator.clipboard.writeText(url)
-        .then(() => {
+      // navigator.clipboard.writeText(url)
+      //   .then(() => {
 
+      //     const tooltip = document.getElementById('tooltip-website-url');
+      //     tooltip.classList.remove('invisible', 'opacity-0');
+      //     tooltip.classList.add('opacity-100');
+
+      //     setTimeout(() => {
+      //       tooltip.classList.add('invisible', 'opacity-0');
+      //       tooltip.classList.remove('opacity-100');
+      //     }, 2000);
+      //   })
+      //   .catch(err => {
+      //     console.error('Failed to copy: ', err);
+      //   });
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url)
+          .then(() => {
+              const tooltip = document.getElementById('tooltip-website-url');
+              tooltip.classList.remove('invisible', 'opacity-0');
+              tooltip.classList.add('opacity-100');
+
+              setTimeout(() => {
+                  tooltip.classList.add('invisible', 'opacity-0');
+                  tooltip.classList.remove('opacity-100');
+              }, 2000);
+          })
+          .catch(err => {
+              console.error('Failed to copy: ', err);
+          });
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = url;
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand("copy");
           const tooltip = document.getElementById('tooltip-website-url');
           tooltip.classList.remove('invisible', 'opacity-0');
           tooltip.classList.add('opacity-100');
 
           setTimeout(() => {
-            tooltip.classList.add('invisible', 'opacity-0');
-            tooltip.classList.remove('opacity-100');
+              tooltip.classList.add('invisible', 'opacity-0');
+              tooltip.classList.remove('opacity-100');
           }, 2000);
-        })
-        .catch(err => {
-          console.error('Failed to copy: ', err);
-        });
+        } catch (err) {
+          console.error('Failed to copy using fallback: ', err);
+        }
+        document.body.removeChild(textarea);
+      }
     }
   },
 };
