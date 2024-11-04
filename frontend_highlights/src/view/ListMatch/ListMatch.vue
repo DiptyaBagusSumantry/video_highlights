@@ -1,11 +1,12 @@
 <template>
-    <div class="p-4">
-        <h1 class="text-2xl font-bold mb-4">List Pertandingan</h1>
+    <Navbar/>
+    <div class="p-4 bg-black h-screen">
+        <h1 class="flex p-8 text-2xl font-bold mb-4 text-white justify-center">List Pertandingan</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             <div 
                 v-for="(match, index) in listMatch" 
                 :key="index" 
-                class="card bg-white shadow-md rounded-md p-4 cursor-pointer hover:shadow-lg transition-shadow duration-200" 
+                class="card bg-white shadow-md rounded-md p-4 cursor-pointer hover:shadow-lg transition-shadow duration-200 border-2 border-red-600 border-opacity-0 hover:border-opacity-100" 
                 @click="redirectToResult(match)"
             >
                 <h2 class="text-lg font-semibold">Pertandingan {{ index + 1 }}</h2>
@@ -17,11 +18,15 @@
 
 <script>
 import { listMatch } from '../../api/api';
+import Navbar from '../../components/Navbar/navbar.vue';
 export default {
     data() {
         return {
             listMatch: []
         }
+    },
+    components: {
+        Navbar
     },
     mounted() {
         this.fetchListMatch();

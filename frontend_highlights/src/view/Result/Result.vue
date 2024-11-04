@@ -1,13 +1,14 @@
 <template>
-  <div class="flex flex-col justify-center items-center min-h-screen p-10">
+  <Navbar/>
+  <div class="flex flex-col justify-center items-center min-h-screen p-10 bg-black">
     <div class="w-1/2 mb-4">
       <div class="w-full bg-gray-200 rounded-full h-4">
         <div
-          class="bg-blue-600 h-4 rounded-full"
+          class="bg-[#FF0E0E] h-4 rounded-full"
           :style="{ width: progress + '%' }"
         ></div>
       </div>
-      <p class="text-center mt-2">{{ progress }}% loaded</p>
+      <p class="text-center mt-2 text-white">{{ progress }}% loaded</p>
     </div>
 
     <div class="grid grid-cols-3 gap-x-10 gap-y-6">
@@ -22,7 +23,7 @@
 
           <div class="w-full max-w-sm mt-4">
             <div class="flex items-center">
-              <span class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg dark:bg-gray-600 dark:text-white dark:border-gray-600">URL</span>
+              <span class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-black bg-gray-100 border border-gray-300 rounded-s-lg dark:bg-gray-600 dark:text-white dark:border-gray-600">URL</span>
               <div class="relative w-full">
                 <input id="website-url" type="text" aria-describedby="helper-text-explanation" 
                       class="bg-gray-50 border border-e-0 border-gray-300 text-gray-500 dark:text-gray-400 text-sm border-s-0 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" 
@@ -30,7 +31,7 @@
               </div>
               <button data-tooltip-target="tooltip-website-url" 
                       @click="copyToClipboard(video)" 
-                      class="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-e-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 border border-blue-700 dark:border-blue-600 hover:border-blue-800 dark:hover:border-blue-700" 
+                      class="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 text-sm font-medium text-center text-white bg-[#FF0E0E] rounded-e-lg hover:bg-[#FF0E0E] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-[#FF0E0E] dark:hover:bg-[#FF0E0E] dark:focus:ring-[#FF0E0E] border border-[#FF0E0E] dark:border-[#FF0E0E] hover:border-[#FF0E0E] dark:hover:border-[#FF0E0E]" 
                       type="button">
                 <span id="default-icon">
                   <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -58,6 +59,7 @@
 
 <script>
 import { resultVideo } from '../../api/api';
+import Navbar from '../../components/Navbar/navbar.vue';
 
 export default {
   data() {
@@ -66,6 +68,9 @@ export default {
       displayedVideos: [],
       progress: 0,
     };
+  },
+  components: {
+    Navbar
   },
   mounted() {
     this.loadVideosDynamically();

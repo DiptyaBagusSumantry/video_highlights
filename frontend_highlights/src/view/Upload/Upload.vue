@@ -1,15 +1,15 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
+  <Navbar/>
+  <div class="fixed inset-0 flex flex-col justify-center items-center h-screen bg-black">
     <div class="flex flex-col items-center justify-center w-1/4">
-      <!-- <h1 class="text-lg font-semibold mb-4">Upload Your Video</h1> -->
       <label
         for="dropzone-file"
-        class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+        class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
       >
         <div class="flex flex-col items-center justify-center pt-5 pb-6">
           <svg
             v-if="!selectedVideo"
-            class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+            class="w-8 h-8 mb-4 text-black dark:text-black"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -23,12 +23,12 @@
               d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
             />
           </svg>
-          <p v-if="!selectedVideo" class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+          <p v-if="!selectedVideo" class="mb-2 text-sm text-black dark:text-black">
             <span class="font-semibold">Click to upload</span> or drag and drop
           </p>
-          <p v-if="!selectedVideo" class="text-xs text-gray-500 dark:text-gray-400">MP4</p>
+          <p v-if="!selectedVideo" class="text-xs text-black dark:text-black">MP4</p>
 
-          <p v-if="selectedVideo" class="mb-2 text-sm text-green-500">
+          <p v-if="selectedVideo" class="mb-2 text-sm text-black">
             {{ selectedVideo.name }}
           </p>
 
@@ -51,7 +51,7 @@
       </label>
       <button
         @click="submitVideo"
-        class="mt-4 bg-blue-500 text-white p-2 rounded-lg"
+        class="mt-4 bg-[#FF0E0E] text-white p-2 font-sans font-bold rounded hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none text-xs py-2 px-4" 
         :disabled="loading"
       >
         Submit
@@ -70,6 +70,7 @@
 
 <script>
 import { uploadVideo } from '../../api/api';
+import Navbar from '../../components/Navbar/navbar.vue';
 
 export default {
   data() {
@@ -78,6 +79,9 @@ export default {
       selectedVideoPreview: null,
       loading: false,
     };
+  },
+  components: {
+    Navbar
   },
   methods: {
     handleVideoUpload(event) {
