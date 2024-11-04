@@ -3,7 +3,8 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   // baseURL: "http://localhost:5000/",
-  baseURL: "http://34.135.114.112:5000/",
+  // baseURL: "http://34.135.114.112:5000/",
+  baseURL: "http://34.72.25.183:5000/",
   headers: {
     "Content-Type": "application/json",
     //  Authorization: `Bearer ${token}`
